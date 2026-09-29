@@ -17,7 +17,7 @@ from contextlib import asynccontextmanager
 from functools import lru_cache
 
 from fastapi import Depends, FastAPI
-from fastapi.responses import JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import BaseModel, Field
 
 from utils.mock_llm import ask_llm
@@ -29,6 +29,7 @@ from .lifecycle import lifecycle
 from .logging_utils import log_event
 from .rate_limiter import RateLimiter
 from .store import ConversationStore, get_redis_client
+from .ui import HTML_PAGE
 
 SERVICE_NAME = "day12-agent"
 SERVICE_VERSION = "1.0.0"
@@ -64,6 +65,12 @@ async def lifespan(_app: FastAPI):
 
 
 app = FastAPI(title="Day 12 Production Agent", version=SERVICE_VERSION, lifespan=lifespan)
+
+
+@app.get("/", response_class=HTMLResponse)
+def index():
+    """Giao diện Web trực quan tương tác với AI Agent."""
+    return HTML_PAGE
 
 
 class AskRequest(BaseModel):
