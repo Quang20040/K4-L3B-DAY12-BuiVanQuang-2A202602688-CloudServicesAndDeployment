@@ -121,3 +121,6 @@ Content-Type: application/json
 
 - `screenshots/dashboard.png` — trang quản lý service trên Render
 - `screenshots/health.png` — kết quả gọi `/health` trả về status 200 OK
+- `screenshots/ready.png` — kết quả gọi `/ready` trả về status 200 OK (Redis ready)
+- `screenshots/docs.png` — giao diện Swagger UI (/docs) trên Render
+- `screenshots/ds.png` — tổng quan dashboard dịch vụ trên Render
